@@ -37,5 +37,5 @@ dev = ["pytest", "python-dotenv"]
 [project.urls]
 "Homepage" = "https://github.com/amrit/litho"
 
-[tool.setuptools.packages.find]
-include = ["litho*"]
+[tool.setuptools]
+py-modules = ["litho"]
