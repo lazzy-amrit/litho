@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "litho"
+version = "0.0.1b1"
+description = "A small, fast ORM for SQLite, libSQL and Turso with local-first sync."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "UNLICENTISED - NOT FOR DISTRIBUTION YET"}
+authors = [
+    {name = "Amrit"}
+]
+keywords = ["orm", "sqlite", "libsql", "turso", "local-first", "database"]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Database :: Front-Ends",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.optional-dependencies]
+libsql = ["libsql"]
+turso = ["pyturso"]
+vectors = ["libsql"]
+dev = ["pytest", "python-dotenv"]
+
+[project.urls]
+"Homepage" = "https://github.com/amrit/litho"
+
+[tool.setuptools.packages.find]
+include = ["litho*"]
+
+[tool.setuptools.package-data]
+litho = ["py.typed"]

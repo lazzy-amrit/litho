@@ -43,7 +43,10 @@ import sqlite3
 import threading
 from contextlib import contextmanager
 
+__version__ = "0.0.1b1"
+
 __all__ = [
+    "__version__",
     "Database", "Model", "Q", "Query", "Result",
     "Field", "IntegerField", "FloatField", "TextField", "BooleanField",
     "DateTimeField", "DateField", "JSONField", "BlobField", "VectorField", "ForeignKey",
@@ -1057,6 +1060,9 @@ class Result:
     def __len__(self):
         return len(self.rows)
 
+    def __getitem__(self, index):
+        return self.rows[index]
+
 
 def _import(module, package):
     try:
@@ -1232,14 +1238,17 @@ class Database:
             except BaseException:
                 self._depth -= 1
                 if outer:
-                    self._conn.rollback()
+                    try:
+                        self._conn.rollback()
+                    except Exception:
+                        pass
                 else:
                     self._call(self._conn.execute, f"ROLLBACK TO {name}")
                     self._call(self._conn.execute, f"RELEASE {name}")
                 raise
             self._depth -= 1
             if outer:
-                self._call(self._conn.commit)
+                self._conn.commit()
             else:
                 self._call(self._conn.execute, f"RELEASE {name}")
 
