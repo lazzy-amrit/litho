@@ -342,6 +342,8 @@ with db.atomic():
     except RuntimeError:
         pass
 # T1 is committed; T2 was rolled back
+
+db.in_transaction   # True inside atomic(), False outside
 ```
 
 ### Raw SQL
@@ -369,6 +371,13 @@ db.execute_many("INSERT INTO user (name) VALUES (?)", [["u1"], ["u2"]])
 Litho provides lightweight schema migration helpers:
 
 ```python
+# Inspect the current schema
+db.tables()                                        # ['post', 'user']
+db.table_exists(User)                              # True / False
+db.columns("post")                                 # ['id', 'author_id', 'title']
+db.indexes("post")                                 # ['post_author_id_idx']
+
+# Make changes
 db.add_missing_columns(UserV2)                     # adds newly defined fields to table
 db.rename_column("article", "old_col", "new_col")
 db.drop_column("article", "old_col")
