@@ -39,6 +39,3 @@ dev = ["pytest", "python-dotenv"]
 
 [tool.setuptools.packages.find]
 include = ["litho*"]
-
-[tool.setuptools.package-data]
-litho = ["py.typed"]
