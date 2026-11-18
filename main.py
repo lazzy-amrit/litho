@@ -3,7 +3,7 @@ Litho - a small ORM for sqlite, libSQL and Turso, in one file.
 
 Quick tour:
 
-    from main import Database, Model, TextField, IntegerField, ForeignKey, Q
+    from litho import Database, Model, TextField, IntegerField, ForeignKey, Q
 
     db = Database("app.db")                      # driver="sqlite" is the default
     # db = Database("app.db", driver="libsql")   # libSQL
@@ -43,7 +43,7 @@ import sqlite3
 import threading
 from contextlib import contextmanager
 
-__version__ = "0.0.1b1"
+__version__ = "0.0.1b2"
 
 __all__ = [
     "__version__",
